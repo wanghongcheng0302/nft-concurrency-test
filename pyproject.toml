@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "wujie-nft-server"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+flask = "^3.0.3"
+flask-sqlalchemy = "^3.1.1"
+flask-migrate = "^4.0.7"
+flask-script = "^2.0.6"
+fastapi = "^0.111.1"
+click = "^8.1.7"
+pymysql = "^1.1.1"
+gunicorn = "^22.0.0"
+cryptography = "^43.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
+locust = "^2.29.1"
+pytest = "^8.3.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

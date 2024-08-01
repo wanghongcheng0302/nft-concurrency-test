@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  web:
+    image: python:3.9
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: >
+      sh -c "
+      pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple &&
+      pip install -r requirements.txt &&
+      gunicorn --bind 0.0.0.0:8080 -w 4 wujie_nft_server.app:app"
+    ports:
+      - "8080:8080"
+    environment:
+      - FLASK_ENV=development
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+        reservations:
+          cpus: "0.5"
+          memory: 256M
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: CAu^@ZIGNsdKn6lF
+      MYSQL_DATABASE: nft
+      MYSQL_USER: nft
+      MYSQL_PASSWORD: asd456...
+    ports:
+      - "3306:3306"
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+        reservations:
+          cpus: "0.5"
+          memory: 256M
